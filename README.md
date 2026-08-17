@@ -1,2 +1,2 @@
 # mbabench-results
-MBABench task results with gemma-4-31B-it
+Task results from running gemma-4-31B-it with MBABench agent harness.  
