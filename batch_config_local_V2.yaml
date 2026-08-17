@@ -1,0 +1,109 @@
+# Local mode — no DB, no S3. Reads from local folders, saves results locally.
+# Usage: excel-agent --batch-config /user/ahm2193/benchmark_gemma/batch_config_local.yaml
+#
+# 1. Put task files (PDFs, xlsx) in a folder
+# 2. Point workspaces[].path to that folder
+# 3. Results saved to results_dir with attempts.jsonl log
+
+batch_name: "Local-Batch - Gemma4-31B-it"
+model: "bartowski/google_gemma-4-31B-it-GGUF"
+local_mode: true
+
+# API endpoint (optional, omit for default)
+base_url: "http://127.0.0.1:11434/v1"
+
+# Input: folders containing task files
+workspaces:
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/ApfelInc/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/BasicGrowth/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/Bosch/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/BreakingDowntheBalance/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/CapitalinMotion/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/CashConversionLab/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/CashNiagara/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/CoastalAggregates/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/ConstantFlow/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/CorpBond/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/CorpBondII/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/CustomerConcentration/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/DailyCash/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/DebtDeclineDynamics/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/DebtFlow/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/DetailedLoan/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/DivinaProportione/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/DoctorvsTrade/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/DoorstepDecisions/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/EasyDCF/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/FinancialRelations/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/FiveAutomotive/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/Fixings/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/FlightPlan/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/FourShops/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/FromBorrowedtoCleared/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/FromSheet/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/FruitJuice_3-Statement-Model - v2/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/FundFun/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/FXArbitrage/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/GermanLife/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/Harrington/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/LeaseorKeys/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/LiquiditySplatter/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/LogisticsCategorization/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/MarketBalanced/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/Meridian/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/MonthlyLiquidity/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/NestQuest/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/NextEraEnergy/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/Office/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/PastaInc_3-Statement-Model/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/PaydownPathways/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/PlasticParts/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/ProductionPlanning/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/PropertyPathways/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/Proportionality/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/QuarterlyRatios/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/RelativeDevelopment/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/RevForecast/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/RoadtoZero/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/SaaSScenario/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/SAP/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/SingleForever/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/SpendingPlan/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/TBond/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/TBondII/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/TechVentures/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/Telecom/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/TheInterestGame/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/TheLiquidityEngine/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/TheLiquidityLoop/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/TheLoanJourney/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/ThePayoffPlan/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/ThreeCars/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/TMobile/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/Volkswagen/"
+  - path: "/shared/share_mala/aidenm/MBABenchV2-tasks/WinzigweichCorp/"
+
+# Where fresh workspaces are created (agent works here)
+workspace_base_dir: "/shared/share_mala/aidenm/mbabench_gemma/workspaces"
+
+# Where final results are saved + attempts.jsonl log
+results_dir: "/shared/share_mala/aidenm/mbabench_gemma/results"
+
+# Task type: "fmwc" (default) or "wsp" — selects the task template
+task_type: "fmwc"
+
+# Execution settings
+max_iterations: 20
+prompt_version: "v11"
+max_completion_tokens: 64000          # 90000
+api_timeout_seconds: 300          # 600
+fresh_context_mode: true
+enhanced_excel_context: false
+cleanup_workspace: false              # Keep workspace for inspection
+verbose: true
+yaml_trace_logging: true              # Log model inputs/outputs to YAML files in workspace
+summarize_excel_context: false        # Summarize starting Excel files before sending to model
+
+# Formatting Audit Settings (optional)
+formatting_audit: true        # Run periodic formatting audit
+formatting_audit_interval: 5          # Run audit every __ iteration & on completion (default: 5)
